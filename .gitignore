@@ -8,25 +8,58 @@ build/
 dist/
 coverage/
 
-# Environment variable files
-*.csv
+# Environment variable files and backups
 *.env*
-.env.backup*
-
-
+!.env.example
 
 # Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS and IDE files
 .DS_Store
 Thumbs.db
 .vscode/
+.idea/
+*.swp
 
 # Misc
 *.tmp
+*.bak
 
 # Sensitive config
 config.js
 
-# Ignore CSV import files (if any are uploaded
+# Ignore CSV import files (if any are uploaded locally)
+*.csv
+
+# Ignore database files/backups
+*.sqlite
+*.db
+*.db-journal
+*.sql
+
+# Ignore Python cache and virtual environments (if any backend Python code)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+.venv/
+
+# Ignore test output
+/coverage/
+test-results/
+
+# Ignore frontend build artifacts (if any)
+frontend/build/
+frontend/dist/
+
+# Ignore uploads and user-generated files
+uploads/
+media/
+files/
