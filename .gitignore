@@ -1,28 +1,32 @@
-# Environment variables
-.env
-*.env
-
-# Dependencies
+# Node dependencies
 node_modules/
-__pycache__/
-*.pyc
+.pnp/
+.pnp.js
 
-# Build files
+# Build and production output
 build/
 dist/
+coverage/
+
+# Environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Logs
 *.log
 
-# IDE files
-.vscode/
-.idea/
-
-# OS files
+# OS and IDE files
 .DS_Store
 Thumbs.db
+.vscode/
 
-# Secrets
-secrets/
-*.key
-*.pem
+# Misc
+*.tmp
+
+# Sensitive config
+config.js
+
+# Ignore CSV import files (if any are uploaded
