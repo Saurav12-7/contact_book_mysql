@@ -1,0 +1,2 @@
+ALTER TABLE users ADD COLUMN gmail VARCHAR(255);
+ALTER TABLE users ADD COLUMN gmail_app_password VARCHAR(255); 

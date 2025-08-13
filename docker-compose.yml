@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contact_book_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: contact_book_db
+      SECRET_KEY: ${SECRET_KEY:-your-super-secret-key-change-this-in-production}
+      GMAIL_SERVICE_EMAIL: ${GMAIL_SERVICE_EMAIL:-your-service-email@gmail.com}
+      GMAIL_SERVICE_PASSWORD: ${GMAIL_SERVICE_PASSWORD:-your-app-password-here}
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    command: ["python", "app.py"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+
+volumes:
+  db_data: 
