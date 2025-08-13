@@ -11,6 +11,9 @@ coverage/
 # Environment variable files
 *.csv
 *.env*
+.env.backup*
+
+
 
 # Logs
 *.log
