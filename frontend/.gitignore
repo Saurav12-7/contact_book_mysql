@@ -39,3 +39,8 @@ config.js
 # Ignore file input ref (not needed for GitHub)
 # Example: If you use a file for fileInputRef persistence
 fileInputRef.js
+# Ignore database files/backups
+*.sqlite
+*.db
+*.db-journal
+*.sql   
